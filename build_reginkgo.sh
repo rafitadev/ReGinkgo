@@ -80,7 +80,7 @@ if [[ ! -d drivers ]]; then
 fi
 
 if [[ "$IS_GP" == "1" ]]; then
-    export KBUILD_BUILD_USER="Flopster101"
+    export KBUILD_BUILD_USER=rafitadev
     export KBUILD_BUILD_HOST="buildbot"
 fi
 
