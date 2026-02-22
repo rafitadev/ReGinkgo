@@ -3,3 +3,4 @@ clang/
 *.o
 *.out
 .config
+.git/
