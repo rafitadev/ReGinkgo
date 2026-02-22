@@ -261,7 +261,7 @@ else
     CK_TYPE="Vanilla"
     CK_TYPE_SHORT="V"
 fi
-ZIP_PATH="$WP/Floppy_$FK_VER-$CK_TYPE-$CODENAME-$DATE.zip"
+ZIP_PATH="$WP/ReGinkgo_$FK_VER-$CK_TYPE-$CODENAME-$DATE.zip"
 
 echo -e "\nINFO: Build info:
 - Device: $DEVICE ($CODENAME)
