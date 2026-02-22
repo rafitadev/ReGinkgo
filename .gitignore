@@ -1,0 +1,5 @@
+out/
+clang/
+*.o
+*.out
+.config
