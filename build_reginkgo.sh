@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Build script for FloppyKernel (ginkgo).
+# Build script for FloppyKernel originally, And ReGinkgo(ginkgo).
 # Based on build script for Quicksilver, by Ghostrider.
 # Copyright (C) 2020-2021 Adithya R. (original version)
 # Copyright (C) 2022-2025 Flopster101 (rewrite)
