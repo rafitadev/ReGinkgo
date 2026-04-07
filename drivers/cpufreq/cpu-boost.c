@@ -454,11 +454,11 @@ static int cpu_boost_init(void)
 		s->cpu = cpu;
 		/* Set default powerkey boost frequencies for trinket */
 		if (cpu <= 3) {
-			/* Little cluster (CPU 0-3): 1804 MHz */
-			s->powerkey_input_boost_freq = 1804800;
-		} else {
-			/* Big cluster (CPU 4-7): 2016 MHz */
+			/* Little cluster (CPU 0-3): 2016 MHz */
 			s->powerkey_input_boost_freq = 2016000;
+		} else {
+			/* Big cluster (CPU 4-7): 2208 MHz */
+			s->powerkey_input_boost_freq = 2208000;
 		}
 	}
 
