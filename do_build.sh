@@ -2,7 +2,7 @@
 set -e
 
 # Configuration
-all_devs=("ginkgo" "laurel_sprout") # Define devices for "all" target
+all_devs=("ginkgo" "willow") # Supported devices only
 ck_script="ckbuild.sh"              # Name of main script
 
 rm -r include/config &>/dev/null || true
@@ -83,6 +83,13 @@ if [[ "$arg_target" == "all" ]]; then
 else
     devices_to_process=("$arg_target")
 fi
+
+for device_name in "${devices_to_process[@]}"; do
+    if [[ ! " ${all_devs[*]} " =~ " ${device_name} " ]]; then
+        echo "ERROR: Unsupported device '${device_name}'. Supported devices: ${all_devs[*]}"
+        exit 1
+    fi
+done
 
 # Build all variants for each device before moving to the next
 for device_name in "${devices_to_process[@]}"; do
