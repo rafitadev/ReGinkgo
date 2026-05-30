@@ -642,7 +642,7 @@ static bool osm_dt_find_freq(u32 *of_table, int of_len, long frequency)
 	int i;
 
 	if (!of_table)
-		return true;
+		return false;
 
 	for (i = 0; i < of_len; i++) {
 		if (frequency == of_table[i])
@@ -718,10 +718,19 @@ static int osm_cpufreq_cpu_init(struct cpufreq_policy *policy)
 		table[i].driver_data = table[i].frequency;
 
 		/* Ignore frequency if not present in DT table */
-		if (!osm_dt_find_freq(of_table, of_len, table[i].frequency))
+		if (of_table &&
+		    !osm_dt_find_freq(of_table, of_len, table[i].frequency))
 			table[i].frequency = CPUFREQ_ENTRY_INVALID;
 
-		if (core_count == SINGLE_CORE_COUNT)
+		/*
+		 * Some downstream OSM tables tag the highest bins as single-core
+		 * entries. Keep the legacy filtering for platforms without an
+		 * explicit DT table, but trust qcom,cpufreq-table-* when it
+		 * explicitly whitelists those bins so they are exported through
+		 * cpufreq sysfs and apps can see/select the overclock steps.
+		 */
+		if (core_count == SINGLE_CORE_COUNT &&
+		    !osm_dt_find_freq(of_table, of_len, table[i].driver_data))
 			table[i].frequency = CPUFREQ_ENTRY_INVALID;
 
 		/* Two of the same frequencies means end of table */
